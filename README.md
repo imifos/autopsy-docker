@@ -12,7 +12,7 @@ Tested on MacOS Catalina. Should work on Linux. Not tested yet under Windows.
   * Add sleuthkit-java_4.9.0-1_amd64.deb from https://www.autopsy.com/download/
   * docker build -t autopsy .
 
-Alternatively, download from Docker Hub.
+Alternatively, download from Docker Hub. It's however a big file.
    
 ## Pre-requisites 
 
