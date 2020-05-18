@@ -2,6 +2,8 @@
 
 Runs The Sleuth Kit's Autopsy in a Docker container.
 
+Tested on MacOS Catalina. Should work on Linux. Not tested yet under Windows.
+
 ## Building
 
   * Checkout https://github.com/imifos/autopsy-docker
@@ -16,9 +18,9 @@ Alternatively, download from Docker Hub.
 
 In order to display a GUI on our host system, we need to run a X11 server on our host system and mount the IPC connection points into our container. 
 
-A good description on how to do this can be found here: https://medium.com/@dimitris.kapanidis/running-gui-apps-in-docker-containers-3bd25efa862a
+For MacOS, a good description on how to do this can be found here: https://medium.com/@dimitris.kapanidis/running-gui-apps-in-docker-containers-3bd25efa862a
 
-Quick-start version:
+Quick-start version for MacOS:
 
   * Download and install XQuartz from https://www.xquartz.org or via ```brew cask install xquartz```.
   * Logout-login or reboot. 
