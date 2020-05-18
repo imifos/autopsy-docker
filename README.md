@@ -4,6 +4,12 @@ Runs The Sleuth Kit's Autopsy in a Docker container.
 
 Tested on MacOS Catalina. Should work on Linux. Not tested yet under Windows.
 
+## Licenses
+
+  * This project/Docker file is licensed under GNU GENERAL PUBLIC LICENSE 3.0
+  * TSK Autopsy is Apache License 2.0 / https://github.com/sleuthkit/autopsy
+  * TSK has various licenses, please see https://github.com/sleuthkit/sleuthkit
+
 ## Building
 
   * Checkout https://github.com/imifos/autopsy-docker
