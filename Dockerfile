@@ -5,26 +5,8 @@
 #   TSK Autopsy is Apache License 2.0 / https://github.com/sleuthkit/autopsy
 #   TSK has various licenses, please see https://github.com/sleuthkit/sleuthkit
 #
-# Pre-requisites:
+# Documentation:
 #   See README.md
-# 
-# Build:
-#   Checkout https://github.com/imifos/autopsy-docker
-#   Enter directory
-#   docker build -t autopsy .
-#
-# Use Cases:
-#   Replace 192.168.1.xxx with your IP.
-#   Do NOT run the container as privileged.
-#
-#   Help:
-#      docker run --rm -ti autopsy
-#
-#   Start AUTOPSY, mounting a case volume:
-#      docker run --rm -ti -e DISPLAY=192.168.1.xxx:0 -v /tmp/.X11-unix:/tmp/.X11-unix -v /myhost_case_files:/container_case_files autopsy
-#
-#   Start AUTOPSY, mounting current directory as case volume:
-#      docker run --rm -ti -e DISPLAY=192.168.1.xxx:0 -v /tmp/.X11-unix:/tmp/.X11-unix -v `pwd`:/container_case_files autopsy
 #
 FROM ubuntu:18.04
 MAINTAINER @imifos
