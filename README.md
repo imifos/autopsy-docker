@@ -8,13 +8,13 @@ The resulting image is big (2.5G), but it contains many integrated tools like TS
 
 ## Versions
 
-  * 1.0 (05.2020) - Basis Autopsy runtime. 
+  * 1.0, 05.2020, Autopsy 4.15.0, Basis Autopsy runtime. 
 
 ## Licenses
 
   * This project/Docker file is licensed under GNU GENERAL PUBLIC LICENSE 3.0
-  * TSK Autopsy is Apache License 2.0 / https://github.com/sleuthkit/autopsy
-  * TSK has various licenses, please see https://github.com/sleuthkit/sleuthkit
+  * TSK Autopsy is Apache License 2.0, see https://github.com/sleuthkit/autopsy
+  * TSK has various licenses, see https://github.com/sleuthkit/sleuthkit
 
 ## Building
 
@@ -30,7 +30,7 @@ The image is also on Docker Hub: https://hub.docker.com/repository/docker/imifos
    
 ## Pre-requisites 
 
-In order to display a GUI on our host system, we need to run a X11 server on our host system and mount the IPC connection points into our container. 
+In order to display a GUI on the host system, we need to run a X11 server and mount the IPC connection points into the container. 
 
 For MacOS, a good description on how to do this can be found here: https://medium.com/@dimitris.kapanidis/running-gui-apps-in-docker-containers-3bd25efa862a
 
@@ -40,10 +40,10 @@ Quick-start version for MacOS:
   * Logout-login or reboot. 
   * Determine your host IP address (```<your IP>```).
   * Open terminal.
-  * Start XQuartz: ```open -a Xquartz```. This HAS to be done from the console, otherwise the process will not run with the correct rights.
+  * Start XQuartz: ```open -a Xquartz```. This HAS to be done from the terminal, otherwise the process will not run with the correct rights.
   * (Do Once) In the XQuartz X11 Preferences, Security, Allow connections from network clients.
-  * (Do Once) Open a new terminal window, close the previous one.
-  * Whitelist your host IP to allow X11 connections from your host to our host via the network interface: ```/opt/X11/bin/xhost + <your IP>```. This has to be done with $DISPLAY on default or operational value as xhost connects to X11 server used the currently configured way. We do NOT set the local $DISPLAY environment variable.
+  * (Do Once) Open a new terminal window to make sure the new $DISPLAY environment variable value is set in our shell. Close the previous one. 
+  * Whitelist the host IP to allow X11 connections from host to host via the network interface: ```/opt/X11/bin/xhost + <your IP>```. This has to be done with $DISPLAY on default or operational value as xhost connects to the X11 server using the currently configured way. We do NOT set the local $DISPLAY environment variable.
   * Start a test container to verify the Autopsy GUI pops-up: ```docker run --rm -ti -e DISPLAY=<your IP>:0 -v /tmp/.X11-unix:/tmp/.X11-unix autopsy```
   * In case of error (Catalina), you need to give your shell (/bin/bash, /bin/zsh or both) 'Full Disk Access' in Preferences, Security & Privacy, Privacy. Re-open a new terminal window and retry. Ref: https://github.com/XQuartz/XQuartz/issues/6
 
