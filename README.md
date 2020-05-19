@@ -4,6 +4,12 @@ Runs The Sleuth Kit's Autopsy in a Docker container.
 
 Tested on MacOS Catalina. Should work on Linux. Not tested yet under Windows.
 
+The resulting image is big (2.5G), but it contains many integrated tools like TSK, EWF Tools, gstreamer, Jython (for extensions), Java/FX (for extensions), photorec, plaso, SolR, Volatility, Tesseract OCR, xmount. The extracted Autopsy ZIP package alone is nearly 2 GB. 
+
+## Versions
+
+  * 1.0 (05.2020) - Basis Autopsy runtime. 
+
 ## Licenses
 
   * This project/Docker file is licensed under GNU GENERAL PUBLIC LICENSE 3.0
@@ -17,8 +23,10 @@ Tested on MacOS Catalina. Should work on Linux. Not tested yet under Windows.
   * Add autopsy-4.15.0.zip from https://www.autopsy.com/download/
   * Add sleuthkit-java_4.9.0-1_amd64.deb from https://www.autopsy.com/download/
   * docker build -t autopsy .
+  
+The multi-stage build creates an intermediary image that should be removed, for instance with ```docker image prune```. Building with the exterimental '--squash' flag saves additional 300MB.
 
-Alternatively, download from Docker Hub. It's however a big file.
+The image is also on Docker Hub: https://hub.docker.com/repository/docker/imifos/autopsy
    
 ## Pre-requisites 
 
@@ -43,7 +51,7 @@ Quick-start version for MacOS:
 
 Replace 192.168.1.xxx below with ```<your IP>```. Do NOT run the container as privileged.
 
-Help:
+Displays this README:
   * ```docker run --rm -ti autopsy```
 
 Start AUTOPSY, mounting a case volume:

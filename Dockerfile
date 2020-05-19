@@ -8,14 +8,33 @@
 # Documentation:
 #   See README.md
 #
-FROM ubuntu:18.04
+FROM ubuntu:18.04 AS unzip-stage
 MAINTAINER @imifos
+
+RUN mkdir /tools \
+ && apt update \
+ && apt install -y --no-install-recommends unzip 
+ 
+COPY autopsy-4.15.0.zip /tools
+COPY sleuthkit-java_4.9.0-1_amd64.deb /tools
+COPY README.md /tools
+COPY autopsy.sh /tools
+
+RUN cd /tools \
+ && unzip autopsy-4.15.0.zip \
+ && rm autopsy-4.15.0.zip
+ 
+#
+
+FROM ubuntu:18.04 AS finale-stage
+MAINTAINER @imifos
+
+COPY --from=unzip-stage /tools/ /tools/
 
 ENV JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
 ENV DEBIAN_FRONTEND=noninteractive
 
-RUN mkdir /tools \
- && apt-get update \
+RUN apt-get update \
  && apt-get dist-upgrade -y \
  && apt-get install -y testdisk unzip afflib-tools xmount libewf2 libafflib-dev libbfio-dev libbfio1 libc-dev-bin \
                        libc3p0-java libc6-dev libewf-dev libpostgresql-jdbc-java libpq5 libsqlite3-dev libvhdi-dev \
@@ -24,23 +43,15 @@ RUN mkdir /tools \
  && apt-mark hold libopenjfx-java libopenjfx-jni openjfx \
  && rm -rf /var/lib/apt/lists/* 
 
-COPY autopsy-4.15.0.zip /tools
-COPY sleuthkit-java_4.9.0-1_amd64.deb /tools
-COPY README.md /tools
-COPY autopsy.sh /tools
-
-# Note: Best run autopsy as root inside the container. 
-
 RUN cd /tools \
  && chmod 744 autopsy.sh \
  && dpkg -i sleuthkit-java_4.9.0-1_amd64.deb \
- && unzip autopsy-4.15.0.zip \
- && rm autopsy-4.15.0.zip \
  && rm sleuthkit-java_4.9.0-1_amd64.deb \
- && cd autopsy-4.15.0 \
+ && cd /tools/autopsy-4.15.0 \
  && chmod 744 unix_setup.sh \
  && ./unix_setup.sh
- 
+
 WORKDIR /
 
+# Note: Best run autopsy as root inside the container. Don't run the container as privileged.
 ENTRYPOINT [ "/bin/bash","/tools/autopsy.sh" ] 
