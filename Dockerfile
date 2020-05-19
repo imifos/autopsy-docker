@@ -7,6 +7,9 @@
 #
 # Documentation:
 #   See README.md
+# 
+# Version:
+#   1.0-4.15.0, 05.2020, Autopsy 4.15.0
 #
 FROM ubuntu:18.04 AS unzip-stage
 MAINTAINER @imifos

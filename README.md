@@ -4,11 +4,11 @@ Runs The Sleuth Kit's Autopsy in a Docker container.
 
 Tested on MacOS Catalina. Should work on Linux. Not tested yet under Windows.
 
-The resulting image is big (2.5G), but it contains many integrated tools like TSK, EWF Tools, gstreamer, Jython (for extensions), Java/FX (for extensions), photorec, plaso, SolR, Volatility, Tesseract OCR, xmount. The extracted Autopsy ZIP package alone is nearly 2 GB. 
+The resulting image is big (2.5G uncompressed, 1GB compressed/HUB), but it contains many integrated tools like TSK, EWF Tools, gstreamer, Jython (for extensions), Java/FX (for extensions), photorec, plaso, SolR, Volatility, Tesseract OCR, xmount. The extracted Autopsy ZIP package alone is nearly 2 GB. 
 
 ## Versions
 
-  * 1.0, 05.2020, Autopsy 4.15.0, Basis Autopsy runtime. 
+  * 1.0-4.15.0, 05.2020, Autopsy 4.15.0, Basis Autopsy runtime. 
 
 ## Licenses
 
@@ -43,7 +43,7 @@ Quick-start version for MacOS:
   * Start XQuartz: ```open -a Xquartz```. This HAS to be done from the terminal, otherwise the process will not run with the correct rights.
   * (Do Once) In the XQuartz X11 Preferences, Security, Allow connections from network clients.
   * (Do Once) Open a new terminal window to make sure the new $DISPLAY environment variable value is set in our shell. Close the previous one. 
-  * Whitelist the host IP to allow X11 connections from host to host via the network interface: ```/opt/X11/bin/xhost + <your IP>```. This has to be done with $DISPLAY on default or operational value as xhost connects to the X11 server using the currently configured way. We do NOT set the local $DISPLAY environment variable.
+  * Whitelist the host IP to allow X11 connections from host to host via the network interface: ```/opt/X11/bin/xhost + <your IP>```. This has to be done with $DISPLAY on default or operational value as xhost connects to the X11 server using the currently configured way. We do NOT set the local $DISPLAY environment variable. Do not run "xhost +" without IP.
   * Start a test container to verify the Autopsy GUI pops-up: ```docker run --rm -ti -e DISPLAY=<your IP>:0 -v /tmp/.X11-unix:/tmp/.X11-unix autopsy```
   * In case of error (Catalina), you need to give your shell (/bin/bash, /bin/zsh or both) 'Full Disk Access' in Preferences, Security & Privacy, Privacy. Re-open a new terminal window and retry. Ref: https://github.com/XQuartz/XQuartz/issues/6
 
