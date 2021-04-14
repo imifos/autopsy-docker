@@ -9,6 +9,7 @@ The resulting image is big (2.5G uncompressed, 1GB compressed/HUB), but it conta
 ## Versions
 
   * 1.0-4.15.0, 05.2020, Autopsy 4.15.0, Basis Autopsy runtime. 
+  * 1.1-4.18.0, 04.2021, Autopsy 4.18.0, Basis Autopsy runtime. 
 
 ## Licenses
 
@@ -20,15 +21,15 @@ The resulting image is big (2.5G uncompressed, 1GB compressed/HUB), but it conta
 
   * Checkout https://github.com/imifos/autopsy-docker
   * Enter directory
-  * Add autopsy-4.15.0.zip from https://www.autopsy.com/download/
-  * Add sleuthkit-java_4.9.0-1_amd64.deb from https://www.autopsy.com/download/
+  * Add autopsy-4.18.0.zip from https://www.autopsy.com/download/
+  * Add sleuthkit-java_4.10.2-1_amd64.deb from https://www.autopsy.com/download/
   * docker build -t autopsy .
   
-The multi-stage build creates an intermediary image that should be removed, for instance with ```docker image prune```. Building with the exterimental '--squash' flag saves additional 300MB.
+The multi-stage build creates an intermediary image that should be removed, for instance with ```docker image prune```. Building with the experimental '--squash' flag saves additional 300MB.
 
 The image is also on Docker Hub: https://hub.docker.com/repository/docker/imifos/autopsy
    
-## Pre-requisites 
+## Usage pre-requisites MacOS
 
 In order to display a GUI on the host system, we need to run a X11 server and mount the IPC connection points into the container. 
 
@@ -59,3 +60,18 @@ Start AUTOPSY, mounting a case volume:
 
 Start AUTOPSY, mounting current directory as case volume:
   * ```docker run --rm -ti -e DISPLAY=192.168.1.xxx:0 -v /tmp/.X11-unix:/tmp/.X11-unix -v `pwd`:/container_case_files autopsy```
+
+
+## Pushing to Docker HUB
+
+```
+docker build -t imifos/autopsy .
+docker tag imifos/autopsy:latest imifos/autopsy:1.1-4.18.0
+Docker login
+docker push imifos/autopsy:1.1-4.18.0
+```
+
+## TODO
+
+Test if this works on windows: https://github.com/microsoft/WSL/issues/4106#issuecomment-636446405
+

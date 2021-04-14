@@ -5,5 +5,5 @@ if [[ -z "${DISPLAY}" ]]; then
   echo "Show readme to help you out:"
   cat /tools/README.md | tr -s '#' ' ' | tr -s '`' ' '
 else
-  /tools/autopsy-4.15.0/bin/autopsy
+  /tools/autopsy-4.18.0/bin/autopsy
 fi

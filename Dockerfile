@@ -8,6 +8,10 @@
 # Documentation:
 #   See README.md
 # 
+# Requires autopsy-X.XX.X.zip and sleuthkit-java_X.X.X-1_amd64.deb downloaded 
+# into the Dockerfile directory before building. This is better than downloading 
+# the files each time the image is built.
+#
 # Version:
 #   1.0-4.15.0, 05.2020, Autopsy 4.15.0
 #
@@ -18,14 +22,14 @@ RUN mkdir /tools \
  && apt update \
  && apt install -y --no-install-recommends unzip 
  
-COPY autopsy-4.15.0.zip /tools
-COPY sleuthkit-java_4.9.0-1_amd64.deb /tools
+COPY autopsy-4.18.0.zip /tools
+COPY sleuthkit-java_4.10.2-1_amd64.deb /tools
 COPY README.md /tools
 COPY autopsy.sh /tools
 
 RUN cd /tools \
- && unzip autopsy-4.15.0.zip \
- && rm autopsy-4.15.0.zip
+ && unzip autopsy-4.18.0.zip \
+ && rm autopsy-4.18.0.zip
  
 #
 
@@ -48,9 +52,9 @@ RUN apt-get update \
 
 RUN cd /tools \
  && chmod 744 autopsy.sh \
- && dpkg -i sleuthkit-java_4.9.0-1_amd64.deb \
- && rm sleuthkit-java_4.9.0-1_amd64.deb \
- && cd /tools/autopsy-4.15.0 \
+ && dpkg -i sleuthkit-java_4.10.2-1_amd64.deb \
+ && rm sleuthkit-java_4.10.2-1_amd64.deb \
+ && cd /tools/autopsy-4.18.0 \
  && chmod 744 unix_setup.sh \
  && ./unix_setup.sh
 
