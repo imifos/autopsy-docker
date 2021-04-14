@@ -4,7 +4,7 @@ Runs The Sleuth Kit's Autopsy in a Docker container.
 
 Tested on MacOS Catalina. Should work on Linux. Not tested yet under Windows.
 
-The resulting image is big (2.5G uncompressed, 1GB compressed/HUB), but it contains many integrated tools like TSK, EWF Tools, gstreamer, Jython (for extensions), Java/FX (for extensions), photorec, plaso, SolR, Volatility, Tesseract OCR, xmount. The extracted Autopsy ZIP package alone is nearly 2 GB. 
+The resulting image is big (3.3G uncompressed, 1.6GB compressed/HUB), but it contains many integrated tools like TSK, EWF Tools, gstreamer, Jython (for extensions), Java/FX (for extensions), photorec, plaso, SolR, Volatility, Tesseract OCR, xmount. The extracted Autopsy ZIP package alone is nearly 2 GB. 
 
 ## Versions
 
@@ -67,7 +67,7 @@ Start AUTOPSY, mounting current directory as case volume:
 ```
 docker build -t imifos/autopsy .
 docker tag imifos/autopsy:latest imifos/autopsy:1.1-4.18.0
-Docker login
+docker login
 docker push imifos/autopsy:1.1-4.18.0
 ```
 
